@@ -20,18 +20,18 @@ exports.postSignup = (req, res, next) => {
         //password auth
         if(req.body.password !== req.body.cPassword){
             return res.render('signup', {
-                message: 'Senha não confere'
+                message: 'Passwords does not match'
             });
         } else if (!passwordCheck) {
             return res.render('signup', {
-                message: 'Senha muito curta'
+                message: 'Password is too short'
             });
         }
 
         //email auth
         if(!emailCheck){
             return res.render('signup', {
-                message: 'Email já existe'
+                message: 'Email already registered'
             });
         }
 
@@ -46,7 +46,7 @@ exports.postSignup = (req, res, next) => {
             })
             .then(result => {
                 return res.render('signup', {
-                    message: 'Usuário registrado!'
+                    message: 'User has been registered!'
                 })
             })
             .catch(err => console.log(err));
